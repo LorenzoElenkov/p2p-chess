@@ -1,30 +1,27 @@
-# React + TypeScript + Vite
+# Peer 2 Peer - Chess
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to P2P Chess.
+I have a passion for chess, hence I developed a place, where two players can play against each other.
 
-Currently, two official plugins are available:
+## Infrastructure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Front-end**: React with Vite
+- **Back-end**: Express.js with SocketIO
 
-## Expanding the ESLint configuration
+## How does it work?
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+In order for a player to make his move, he can:
 
-- Configure the top-level `parserOptions` property like this:
+- Click on a chess piece
+- Hold a chess piece
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+The legal moves for this chess piece will be shown on the chess board tiles as a dot.
+The front-end will send a request to the back-end, only if this chess piece was moved to a legal tile.
+Nevertheless, back-end also keeps track of the game and it will also validate the move made by the player.
+If the move is illegal, the backend will send the appropriate response and front-end will revert it back.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## End-game conditions
+
+1.  The player who first checkmates the opposing player - will win the game.
+2.  The player whose remaining time hits 00:00 - will lose the game.
+3.  If one player has no legal moves for any of his pieces on the board, but also is not in check - the game will end in a tie.
