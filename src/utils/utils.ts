@@ -6,18 +6,10 @@ export const getRowNumberTextColor = (n: number) => {
   return isEven ? 'text-white' : 'text-gray-500';
 };
 
-const getStartingPawnPieces = (isWhiteBoard: boolean) => {
-  return new Array(chess.columns).fill('').map((_, index) => ({
-    piece: PieceType.PAWN,
-    letter: isWhiteBoard
-      ? whiteBoard[chess.rows - 1][index][0]
-      : blackBoard[chess.rows - 1][index][0]
-  }));
-};
-
-const getStartingBackRankPieces = (isWhiteBoard: boolean) => {
-  const getPiece = (index: number) => {
-    if (index === 1 || index === chess.columns - 2) return PieceType.KNIGHT;
+const setPositionData = (piece: PieceType | undefined, isWhiteBoard: boolean) => {
+  const getPiece = (index: number, isPawn: boolean) => {
+    if (isPawn) return PieceType.PAWN;
+    else if (index === 1 || index === chess.columns - 2) return PieceType.KNIGHT;
     else if (index === 2 || index === chess.columns - 3) return PieceType.BISHOP;
     else if (index === 3) {
       if (isWhiteBoard) return PieceType.QUEEN;
@@ -29,11 +21,19 @@ const getStartingBackRankPieces = (isWhiteBoard: boolean) => {
   };
 
   return new Array(chess.columns).fill('').map((_, index) => ({
-    piece: getPiece(index),
+    piece: getPiece(index, piece === PieceType.PAWN),
     letter: isWhiteBoard
       ? whiteBoard[chess.rows - 1][index][0]
       : blackBoard[chess.rows - 1][index][0]
   }));
+};
+
+const getStartingPawnPieces = (isWhiteBoard: boolean) => {
+  return setPositionData(PieceType.PAWN, isWhiteBoard);
+};
+
+const getStartingBackRankPieces = (isWhiteBoard: boolean) => {
+  return setPositionData(undefined, isWhiteBoard);
 };
 
 export const getStartingPiecePositions = (isWhiteBoard: boolean) => {
