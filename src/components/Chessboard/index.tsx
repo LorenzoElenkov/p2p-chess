@@ -19,7 +19,7 @@ const Chessboard = ({ playerColor }: ChessboardProps) => {
   }, []);
 
   const [piecesPositions, setPiecesPositions] = React.useState<PiecesPositions>(startingPositions);
-
+  console.log(piecesPositions);
   return (
     <div className="relative aspect-square h-[80svh] mx-auto mt-[10svh] flex flex-col">
       {board.map((row, rowIndex) => {

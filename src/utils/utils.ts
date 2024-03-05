@@ -20,11 +20,11 @@ const setPositionData = (piece: PieceType | undefined, isWhiteBoard: boolean) =>
     } else return PieceType.ROOK;
   };
 
+  const board = isWhiteBoard ? whiteBoard : blackBoard;
+
   return new Array(chess.columns).fill('').map((_, index) => ({
     piece: getPiece(index, piece === PieceType.PAWN),
-    letter: isWhiteBoard
-      ? whiteBoard[chess.rows - 1][index][0]
-      : blackBoard[chess.rows - 1][index][0]
+    letter: board[chess.rows - 1][index][0]
   }));
 };
 
