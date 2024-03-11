@@ -58,6 +58,65 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.piece {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.pawn.white {
+  background-image: url('./assets/w_pawn.png');
+  background-size: 85%;
+}
+.pawn.black {
+  background-image: url('./assets/b_pawn.png');
+  background-size: 85%;
+}
+
+.queen.white {
+  background-image: url('./assets/w_queen.png');
+  background-size: 90%;
+}
+.queen.black {
+  background-image: url('./assets/b_queen.png');
+  background-size: 90%;
+}
+
+.rook.white {
+  background-image: url('./assets/w_rook.png');
+  background-size: 90%;
+}
+.rook.black {
+  background-image: url('./assets/b_rook.png');
+  background-size: 90%;
+}
+
+.bishop.white {
+  background-image: url('./assets/w_bishop.png');
+  background-size: 100%;
+}
+.bishop.black {
+  background-image: url('./assets/b_bishop.png');
+  background-size: 75%;
+}
+
+.knight.white {
+  background-image: url('./assets/w_knight.png');
+  background-size: 75%;
+}
+.knight.black {
+  background-image: url('./assets/b_knight.png');
+  background-size: 75%;
+}
+
+.king.white {
+  background-image: url('./assets/w_king.png');
+  background-size: 85%;
+}
+.king.black {
+  background-image: url('./assets/b_king.png');
+  background-size: 85%;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

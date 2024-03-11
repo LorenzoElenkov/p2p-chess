@@ -1,15 +1,17 @@
+import { useContext } from 'react';
 import { chess } from '../../../utils/constants';
 import { getRowNumberTextColor } from '../../../utils/utils';
 import Tile from '../Tile';
+import ChessboardContext from '../../../context/Board';
 
 type RowProps = {
   index: number;
-  isWhiteBoard: boolean;
   content: string[];
 };
 
-const Row = ({ index, content, isWhiteBoard }: RowProps) => {
-  const rowNumber = isWhiteBoard ? chess.rows - index : index + 1;
+const Row = ({ index, content }: RowProps) => {
+  const chessboard = useContext(ChessboardContext);
+  const rowNumber = chessboard.isWhiteBoard ? chess.rows - index : index + 1;
   const rowNumberColor = getRowNumberTextColor(index + 1);
   return (
     <div className={`h-[calc(100%/8)] gap-2 text-xs relative ${rowNumberColor}`}>
@@ -23,7 +25,6 @@ const Row = ({ index, content, isWhiteBoard }: RowProps) => {
               key={tileIndex}
               isWhiteTile={isWhiteTile}
               isLastColumnTile={index === chess.rows - 1}
-              isWhiteBoard={isWhiteBoard}
               tileIndex={tileIndex}
               rowIndex={index}
             />
